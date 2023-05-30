@@ -1,0 +1,70 @@
+Deployment Perangkat Lunak Docker Step:
+
+- docker run wordpress
+- docker pull postgres
+- docker run -p 8080:80 wordpress:php8.2-apache
+- docker run --name mysql -e MYSQL_ROOT_PASSWORD=securepass -e MYSQL_USER=wordpressuser -e MYSQL_PASSWORD=securepassuser -p 3306:3306 mysql:8.0.33
+- docker exec -it mysql bash
+- mysql -u root -p
+- create database dbwordpress;
+- GRANT ALL PRIVILEGES ON dbwordpress.* to 'wordpressuser'@'%';
+
+
+* Foreground = Terhubung Console 
+* Background = Detoch dari console / menambahkan -d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-
