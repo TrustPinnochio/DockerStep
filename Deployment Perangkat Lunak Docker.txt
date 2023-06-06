@@ -1,25 +1,46 @@
 Deployment Perangkat Lunak Docker Step:
-
+========================================
 - docker run wordpress
 - docker pull postgres
 - docker run -p 8080:80 wordpress:php8.2-apache
-- docker run --name mysql -e MYSQL_ROOT_PASSWORD=securepass -e MYSQL_USER=wordpressuser -e MYSQL_PASSWORD=securepassuser -p 3306:3306 mysql:8.0.33
+
+- docker run -d --name mysql \
+-e MYSQL_ROOT_PASSWORD=securepass \
+-e MYSQL_DATABASE=dbwordpress \
+-e MYSQL_USER=wordpressuser \ 
+-e MYSQL_PASSWORD=wppass 
+mysql:8.0.33
+
+docker run -d -p 8080:80 --name wordpress \
+--link=mysql \
+-e WORDPRESS_DB_HOST=mysql \
+-e WORDPRESS_DB_PASSWORD=wppass \
+-e WORDPRESS_DB_NAME=dbwordpress \
+-e WORDPRESS_DB_USER=wordpressuser \
+wordpress:php8.2-apache
+
 - docker exec -it mysql bash
 - mysql -u root -p
 - create database dbwordpress;
 - GRANT ALL PRIVILEGES ON dbwordpress.* to 'wordpressuser'@'%';
 
-
 * Foreground = Terhubung Console 
 * Background = Detoch dari console / menambahkan -d
+========================================
+Tutorial:
 
+- Install Xampp
+- Start Mysql
+- create root password
+- clone user 
+- create dbapp
+========================================
+Run From CMD:
 
+docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=securepass -e MYSQL_DATABASE=dbwordpress -e MYSQL_USER=wordpressuser -e MYSQL_PASSWORD=wppass mysql:8.0.33
 
-
-
-
-
-
+docker run -d -p 8080:80 --name wordpress --link=mysql -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_PASSWORD=wppass -e WORDPRESS_DB_NAME=dbwordpress -e WORDPRESS_DB_USER=wordpressuser wordpress:php8.2-apache
+========================================
 
 
 
